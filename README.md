@@ -1,60 +1,71 @@
-Project Summary
+# News Article Scraping Project - China Diplomatic Visits Media Analysis
 
-This project focuses on **automated news scraping and classification** related to China's global engagements. It consists of two major components:
+## Overview
 
+This project aims to collect and organize media articles related to the international diplomatic visits made by top Chinese leaders (e.g., President, Premier) over the last two decades. The scraped articles can be used for downstream tasks such as sentiment analysis, thematic classification, and understanding international media perception of China.
 
-
-### Project Structure
-
-#### 1. `SerpAPIScrapingInfo.ipynb`
-
-* **Purpose**: Uses SerpAPI to scrape news articles related to Chinese diplomatic visits or global influence.
-* **Key Steps**:
-
-  * Sends search queries (possibly customized by date, country, or leader).
-  * Collects metadata such as title, date, link, and snippet.
-  * Cleans and stores the news dataset for analysis.
-
-#### 2. `Theme_Classification.ipynb`
-
-* **Purpose**: Classifies each news article into a thematic category (e.g., economic, political, symbolic) using NLP techniques.
-* **Key Techniques**:
-
-  * Zero-shot classification using a transformer model (possibly BART or RoBERTa via HuggingFace).
-  * Custom label set (e.g., "Symbolic", "Economic", "Strategic").
-  * Outputs labeled data for visualization or dashboarding.
+The core motivation stems from China’s growing global influence. While the main project tracks the **frequency and intensity of diplomatic trips**, this sub-project focuses on **how these visits are represented in international media**.
 
 ---
 
-### Suggested Reading Order
+## Project Structure
 
-1. **`SerpAPIScrapingInfo.ipynb`** – Start here to generate the news dataset from Google search via SerpAPI.
-2. **`Theme_Classification.ipynb`** – Next, classify the scraped data into meaningful categories for deeper analysis.
+### 1. `Codes/`
 
----
+This folder contains all the Jupyter notebooks used for the scraping and transformation processes:
 
-### Requirements
+* **`SerpAPIScrapingInfo.ipynb`**: Utilizes the SerpAPI to scrape Google search results for news headlines and metadata. Handles API call structure and query formatting.
+* **`Theme_Classificattion.ipynb`**: Prepares the collected articles for thematic classification using keyword-based filtering and topic extraction techniques.
 
-You’ll likely need:
-
-```bash
-pip install serpapi
-pip install transformers
-pip install pandas
-pip install torch
-```
-
-Also ensure you have a valid **SerpAPI key** stored as an environment variable or directly used in the code.
+>  Due to monthly API limits, scraping has been completed for only 20 countries so far. The code is modular and designed to scale easily with more countries once API quota is available.
 
 ---
 
-### Outputs
+### 2. `20CountryPilot.xlsx` (in `csv_data/` folder)
 
-* A CSV file or DataFrame with classified news articles including:
+This Excel file includes preprocessed and aggregated results for 20 countries. It summarizes the headline content, associated metadata (date, country, query used), and thematic labels.
 
-  * Title
-  * Date
-  * URL
-  * Predicted theme (Symbolic/Economic/Strategic/etc.)
+---
 
+## How to Use This Repository
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/china-diplomacy-media.git
+   ```
+
+2. Open the `Codes/` folder and run the notebooks in the following order:
+
+   * `SerpAPIScrapingInfo.ipynb`
+   * `Theme_Classificattion.ipynb`
+
+3. Use the data inside the `csv_data/` folder for visualization or further NLP tasks (e.g., zero-shot classification, sentiment analysis).
+
+---
+
+## Footnote
+
+This news scraping pipeline is part of a broader project to track and understand China’s diplomatic engagements globally. The core project also includes:
+
+* Mapping trip frequency by country and year
+* Classifying the nature of visits (symbolic, economic, strategic)
+* Creating interactive dashboards using Tableau
+
+For now, this sub-project focuses solely on building a dataset of news articles related to diplomatic visits.
+
+---
+
+## Future Work
+
+* Expand scraping to cover all countries.
+* Integrate multilingual search to capture non-English media.
+* Conduct large-scale sentiment and framing analysis.
+* Link article sentiment with trip purpose and region.
+
+---
+
+
+I have added a Tableau visaualisaiton of the current output which can be accessed and viwed with this link:
+Perception Monitor: https://public.tableau.com/app/profile/tanushree.jain6697/viz/PerceptionMonitorPilot/Dashboard1?publish=yes
 
